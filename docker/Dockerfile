@@ -9,7 +9,6 @@ RUN apt-get update && apt-get install -y gnupg \
     &&  rm -rf /var/lib/apt/lists/* \
     &&  chmod +x /run.sh
 
-#VOLUME /var/lib/mongo /var/log/mongodb/
 EXPOSE "27017"
 HEALTHCHECK --interval=5s --timeout=10s --retries=3 \
       CMD mongo --eval "ping: 1" || exit 1
