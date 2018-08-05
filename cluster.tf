@@ -14,6 +14,12 @@ data "aws_route53_zone" "selected" {
   private_zone = true
 }
 
+locals {
+  mongo_nodes        = "{\"mongo_nodes\": [ ${join(",", aws_route53_record.mongo_dns.*.fqdn)} ]}"
+  first_aws_instance = "${element(aws_instance.mongo.*.public_ip, 0)}"
+  docker_image       = "\"mongo_image=${var.mongo_image}\""
+}
+
 resource "aws_security_group" "MongoSG" {
   name_prefix = "mongo_rs_SG"
   vpc_id      = "${var.vpc_id}"
@@ -77,12 +83,6 @@ resource "aws_route53_record" "mongo_dns" {
 
   // matches up record N to instance N
   records = ["${element(aws_instance.mongo.*.private_ip, count.index)}"]
-}
-
-locals {
-  mongo_nodes = "{\"mongo_nodes\": [ ${join(",", aws_route53_record.mongo_dns.*.fqdn)} ]}"
-  first_aws_instance = "${element(aws_instance.mongo.*.public_ip, 0)}"
-  docker_image = "\"mongo_image=${var.mongo_image}\""
 }
 
 resource "null_resource" "init_replicaset" {
