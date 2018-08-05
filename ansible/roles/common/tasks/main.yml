@@ -1,0 +1,37 @@
+-
+    name: 'Create a filesystem on mounted volume'
+    filesystem:
+        fstype: xfs
+        dev: /dev/xvdg
+-
+    name: 'Create folder to mount external storage'
+    file:
+        path: /mnt/data
+        state: directory
+        mode: 493
+-
+    name: 'Mount external storage'
+    mount:
+        path: /mnt/data
+        src: /dev/xvdg
+        fstype: xfs
+        state: mounted
+-
+    name: 'Install docker'
+    yum:
+        name: docker
+        state: latest
+-
+    name: 'Start docker service'
+    service:
+        name: docker
+        state: started
+        enabled: yes
+-
+    name: 'Install pip'
+    easy_install:
+        name: pip
+        state: latest
+-
+    name: 'Docker | Setup packages'
+    pip: "name=docker-py\nversion=1.10.6\nstate=present"

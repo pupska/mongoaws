@@ -1,0 +1,12 @@
+-
+    name: 'Deploy mongo container'
+    docker_container:
+        name: mongo
+        image: '{{ mongo_image }}'
+        state: started
+        restart_policy: always
+        ports:
+            - '27017:27017'
+        volumes:
+            - '/mnt/data/mongo_db:/var/lib/mongo:Z'
+            - '/mnt/data/mongo_logs:/var/log/mongodb/:Z'

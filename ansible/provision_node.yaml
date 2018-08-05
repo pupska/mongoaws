@@ -1,0 +1,19 @@
+-
+    name: "Deploy common infrastructure"
+    hosts: all
+    become: true
+    roles:
+        - common
+        - mongo
+    tags:
+        - first
+-
+    name: "Init mongo replica set"
+    hosts: all
+    become: true
+    roles:
+        -
+            role: mongo_leader
+            nodes: ['{{ mongo_nodes }}']
+    tags:
+        - leader

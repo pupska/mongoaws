@@ -1,0 +1,8 @@
+rs.initiate( {
+    _id : "rs0",
+    members: [
+        {% for server in item %}
+        { _id: {{ loop.index0 }}, host: "{{server}}:27017" },
+        {% endfor %}
+    ]
+})

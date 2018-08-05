@@ -1,0 +1,13 @@
+-
+    name: 'mongo leader | prepare rs init config'
+    template:
+        src: init_rs.j2
+        dest: /tmp/init_rs.js
+    with_items:
+        - '{{ nodes }}'
+-
+    name: 'mongo leader | copy config to container'
+    command: 'docker cp /tmp/init_rs.js mongo:/'
+-
+    name: 'mongo leader | init replica set'
+    command: 'docker exec mongo mongo /init_rs.js'
