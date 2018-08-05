@@ -13,7 +13,7 @@ to setup infrastructure to run multinode mongo db replica set on top of aws infr
 ## PreRequisites:
 
 
-have installed 
+have pre-installed 
 * terraform
 * ansible
 
