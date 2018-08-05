@@ -35,8 +35,9 @@ cd mongoaws
 terraform init
 terraform apply
 ```
+* Now you can connect to any of output IPs with your favorite mongodb client and check with rs.config() that replicaset is configured. 
 
-after you complete with it, destroy cluster to save resources
+* after you complete with it, destroy cluster to save resources
 ```
 terraform destroy
 ```
