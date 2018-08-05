@@ -1,6 +1,7 @@
 # mongoaws
 
-This repository contains set of Terraform and Ansible scripts to setup infrastructure to run multinode mongo db replica set on top of aws.
+This repository contains set of Terraform and Ansible scripts 
+to setup infrastructure to run multinode mongo db replica set on top of aws infrastructure.
 ### current features:
 * create missing aws infrastructure:
   * SecurityGroup
@@ -22,14 +23,13 @@ have pre-configured resources in amazon:
 * hosted private DNS zone in Route53 linked to vpc. 
     
 
-##Usage: 
+## Usage: 
 * clone repository to your system and and change directory to cloned repo
 ```
 git clone https://github.com/pupska/mongoaws
 cd mongoaws
 ```
 * Fill variables.tf according to your environment. 
-
 * start deploy 
 ```
 terraform init
